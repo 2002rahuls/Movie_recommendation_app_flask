@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <title>Movie Recommendation</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .recommended-movie {
+          display: flex;
+          align-items: center;
+          margin-bottom: 20px;
+        }
+        .recommended-movie .thumbnail {
+          margin-right: 20px;
+        }
+        .recommended-movie .thumbnail img {
+          width: 120px;
+          height: 90px;
+          border-radius: 4px;
+        }
+        .recommended-movie .movie-details {
+          display: flex;
+          flex-direction: column;
+        }
+        .recommended-movie .movie-details h3 {
+          margin: 0;
+          font-size: 18px;
+        }
+        .recommended-movie .movie-details a {
+          color: #0066cc;
+          text-decoration: none;
+        }
+        .recommended-movie .movie-details a:hover {
+          text-decoration: underline;
+        }
+        .thumbnail-link {
+        display: inline-block;
+      }
+     
+
+      </style>
+    </head>
+      
+      <h1>Movie Recommendation System</h1>
+      <form method="POST" action="/">
+        <label for="movie_name">Enter your favorite movie name:</label>
+        <input type="text" id="movie_name" name="movie_name" required placeholder="Please enter your favorite movie">
+        <input type="submit" value="Submit">
+      </form>
+      {% if movie_name %}
+        <h2>Suggested Movie: {{ movie_name }}</h2>
+      {% endif %}
+      <h2>Recommended Movies:</h2>
+      {% for movie in recommended_movies %}
+      <div class="recommended-movie">
+        <div class="thumbnail">
+          <a class="thumbnail-link" href="{{ movie.url }}" target="_blank">
+            <img src="{{ movie.thumbnail }}" alt="Video Thumbnail">
+            <div class="play-button"></div>
+          </a>
+        </div>
+        <div class="movie-details">
+          <h3>{{ movie.title }}</h3>
+        </div>
+      </div>
+    {% endfor %}
+    <div class="footer">
+      <p>Made by- RAHUL SHAH</p>
+      <p>
+        <a href="https://github.com/2002rahuls" target="_blank" >Github</a>
+        <a href="https://www.instagram.com/rahul__shah__2" target="_blank">Instagram</a>
+        <a href="https://www.linkedin.com/in/rahul-shah-8215ab219" target="_blank">LinkedIn</a>
+      </p>
+    </div>
+    
+    
+  </body>
+</html>
